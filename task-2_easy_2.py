@@ -5,18 +5,13 @@
 # Даны два произвольные списка.
 # Удалите из первого списка элементы, присутствующие во втором списке.
 
-# Ввод значений
-numb_1 = int(input("Введите целое число numb_1: "))
-numb_2 = int(input("Введите целое число numb_2: "))
-#print("Значение переменной 'numb_1' ", type(numb_1))
-#print("Значение переменной 'numb_2' ", type(numb_2))
-
-# Меняем местами значения используя две переменные
-numb_1 = numb_1 + numb_2
-numb_2 = numb_1 - numb_2
-numb_1 = numb_1 - numb_2
-
-# Вывод новых значений
-print("--------------------------------------")
-print("Новой значение переменной 'numb_1' ", numb_1)
-print("новое значение переменной 'numb_2' ", numb_2)
+sequence2_1 = [7, '8', 1, 4, 'ab', 'bc', 'cd', 4, 'a', 'ef', '8']
+sequence2_2 = ['dc', 2, 4, 'e', 'b', 'cd', 'a', '1']
+for item2 in sequence2_2:
+	idx2 = sequence2_1.count(item2)
+	if idx2:
+		n = 0
+		while n < idx2:
+			sequence2_1.remove(item2)
+			n += 1
+print(sequence2_1)
