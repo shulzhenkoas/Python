@@ -6,22 +6,15 @@
 # а) неповторяющиеся элементы исходного списка:
 # например, lst = [1, 2, 4, 5, 6, 2, 5, 2], нужно получить lst2 = [1, 2, 4, 5, 6]
 # б) элементы исходного списка, которые не имеют повторений:
-# например, lst = [1 , 2, 4, 5, 6, 2, 5, 2], нужно получить lst2 = [1, 4, 6]
+# например, lst = [1, 2, 4, 5, 6, 2, 5, 2], нужно получить lst2 = [1, 4, 6]
 
-print('Решим уравнение ax^2 + bx + c = 0')
-a = float(input("Введите коэффициент a: "))
-b = float(input("Введите коэффициент b: "))
-c = float(input("Введите коэффициент c: "))
-
-discr = b**2 - 4 * a * c;
-print("Дискриминант D = %.2f" % discr)
-if discr > 0:
-	import math
-	x1 = (-b + math.sqrt(discr)) / (2 * a)
-	x2 = (-b - math.sqrt(discr)) / (2 * a)
-	print("x1 = %.2f \nx2 = %.2f" % (x1, x2))
-elif discr == 0:
-	x = -b / (2 * a)
-	print("x = %.2f" % x)
-else:
-	print("Корней нет")
+sequence4_1 = [1, 2, 4, 5, 6, 2, 5, 2]
+print("Исходный список: ", sequence4_1)
+sequence4_2 = list(set(sequence4_1))
+print("Неповторяющиеся элементы исходного списка: ", sequence4_2)
+sequence4_3 = []
+for item4 in sequence4_1:
+    count4 = sequence4_1.count(item4)
+    if count4 == 1:
+        sequence4_3.append(item4)
+print("Уникальные элементы исходного списка: ", sequence4_3)
