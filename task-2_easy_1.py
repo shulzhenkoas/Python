@@ -16,18 +16,6 @@
 
 # Подсказка: воспользоваться методом .format()
 
-# Генерация произвольного числа (спасибо Google)
-import random
-numb = random.randint(0,1000000)
-print("Random number from 0 to 1000000: ", numb)
-
-# Вывод через цикл for
-print("Output FOR...")
-for a in str(numb):
-	print(a)
-
-# Вывод через цикл while
-print("Output WHILE...")
-while numb != 0:
-	print(numb % 10)
-	numb = numb // 10
+sequence1 = ["яблоко", "банан", "киви", "груша", "черная смородина"]
+for idx1, item1 in enumerate(sequence1):
+	print('{0}. {1:>{2}}'.format(idx1, item1, len(max(sequence1, key=len))))
