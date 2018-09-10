@@ -8,15 +8,14 @@
 # если такой корень вообще можно извлечь
 # Пример: Дано: [2, -5, 8, 9, -25, 25, 4]   Результат: [3, 5, 2]
 
+from math import sqrt
 
-# Генерация произвольного числа (спасибо Google)
-import random
-numb = random.randint(0,1000000)
-print("Random number from 0 to 1000000: ", numb)
-
-# Вывод через цикл while
-max_numb = 0
-for a in str(numb):
-	if int(a) > max_numb:
-		max_numb = int(a)
-print("В числе '", numb, "' максимальное число '", max_numb, "'")
+sequence1_1 = [2, -5, 8, 9, -25, 25, 4]
+sequence1_2 = []
+for item1 in sequence1_1:
+    if item1 == abs(item1):
+#        id1_sqrt = item1 ** 0.5
+        id1_sqrt = sqrt(item1)
+        if id1_sqrt == int(id1_sqrt):
+            sequence1_2.append(int(id1_sqrt))
+print(sequence1_2)
