@@ -6,4 +6,16 @@
 # Первыми элементами ряда считать цифры 1 1
 
 def fibonacci(n, m):
-pass
+#    print(n)
+#    print(m)
+    str_fib = [1, 1]
+    i = 2
+    while i < m:
+        str_fib.append(str_fib[i-1] + str_fib[i-2])
+        i += 1
+    print(str_fib)
+    return str_fib[n-1:m] # Срез не включает последний элемент, поэтому 'm', а не 'm-1'
+
+print("P.S.: Нумерация элементов начинается с 1-го. Отрицательные индексы не вычисляются для ряда Фибоначчи.")
+print(fibonacci(10,20))
+
