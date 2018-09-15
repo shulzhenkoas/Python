@@ -1,31 +1,16 @@
 #__author__ = 'Шульженко А.С.'
 # Coding: UTF-8
 
+# Все задачи текущего блока решите с помощью генераторов списков!
 # Задание-2:
 # Даны два списка фруктов.
 # Получить список фруктов, присутствующих в обоих исходных списках.
 
-def lucky_ticket(ticket_number):
-    string_ticket = str(ticket_number)
-    len_half = len(string_ticket) // 2
-    str1 = string_ticket[:len_half:]
-    str2 = string_ticket[:0-len_half-1:-1]
-    sum1 = 0
-    sum2 = 0
-    for a in str1:
-        sum1 += int(a)
+lst_one = ['яблоко', 'банан', 'киви', 'слива', 'персик', 'груша', 'абрикос', 'банан']
+lst_two = ['киви', 'абрикос', 'хурма', 'чернослив', 'нектарин', 'королек', 'банан']
 
-    for b in str2:
-        sum2 += int(b)
-
-    if sum1 == sum2:
-        return 'Билет счастливый!'
-    else:
-        return 'Билет не счастливый :('
-
-print("P.S.: При нечетном количестве цифр, цифра по середине опускается")
-print(lucky_ticket(123006))
-print(lucky_ticket(12321))
-print(lucky_ticket(436751))
-print(lucky_ticket(4367518))
-print(lucky_ticket(1234567890987654321))
+# Можно и так, set - чтобы вывести только уникальные элементы списка
+#lst_new2 = set([fr2 for fr2 in lst_two for fr1 in lst_one if fr1 == fr2])
+lst_new2 = [fr1 for fr1 in lst_one for fr2 in lst_two if fr1 == fr2]
+print("lst_new2 = ", lst_new2)
+print(type(lst_new2))
