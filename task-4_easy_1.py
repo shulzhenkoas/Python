@@ -1,29 +1,21 @@
 #__author__ = 'Шульженко А.С.'
 # Coding: UTF-8
 
+# Все задачи текущего блока решите с помощью генераторов списков!
 # Задание-1:
 # Дан список, заполненный произвольными целыми числами. 
 # Получить новый список, элементы которого будут
 # квадратами элементов исходного списка
 # [1, 2, 4, 0] --> [1, 4, 16, 0]
 
-def my_round(number, ndigits):
-    int_dig = int(number)
-    float_dig1 = (number - int_dig) * (10 ** ndigits)
-    float_dig2 = int(float_dig1)
-    float_dig3 = float_dig1 - float_dig2
-#    print("int_dif=",int_dig)
-#    print("float_dig1=",float_dig1)
-#    print("float_dig2=",float_dig2)
-#    print("float_dig3=",float_dig3)
-    if float_dig3 > 0.5:
-        float_dig2 += 1
-    return int_dig + float_dig2 / (10 ** ndigits)
+lst_orig = [1, 2, 4, 0, -2, 3, 7]
+lst_new1 = [_**2 for _ in lst_orig]
+print("lst_new1 = ", lst_new1)
+print(type(lst_new1))
 
-print(my_round(2.1234567, 5))
-print(my_round(2.1999967, 5))
-print(my_round(2.9999967, 5))
-print("Проверка через функцию round...")
-print(round(2.1234567, 5))
-print(round(2.1999967, 5))
-print(round(2.9999967, 5))
+# Доброго времент суток
+# ПРосьба ответить на вопрос почему
+# lst_new = [_**2 for _ in lst_orig] --> type <class 'list'>, а
+# lst_new = (_**2 for _ in lst_orig) --> type <class 'generator'>
+# с выводом lst_new =  <generator object <genexpr> at 0x0000002FC94A9B88>
+# Спасибо.
