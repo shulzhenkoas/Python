@@ -9,27 +9,7 @@
 # + Элемент положительный
 # + Элемент не кратен 4
 
-def lucky_ticket(ticket_number):
-    string_ticket = str(ticket_number)
-    len_half = len(string_ticket) // 2
-    str1 = string_ticket[:len_half:]
-    str2 = string_ticket[:0-len_half-1:-1]
-    sum1 = 0
-    sum2 = 0
-    for a in str1:
-        sum1 += int(a)
-
-    for b in str2:
-        sum2 += int(b)
-
-    if sum1 == sum2:
-        return 'Билет счастливый!'
-    else:
-        return 'Билет не счастливый :('
-
-print("P.S.: При нечетном количестве цифр, цифра по середине опускается")
-print(lucky_ticket(123006))
-print(lucky_ticket(12321))
-print(lucky_ticket(436751))
-print(lucky_ticket(4367518))
-print(lucky_ticket(1234567890987654321))
+lst_orig = [9, 2, 4, 15, -3, 3, 1, 12, 0, -12, 36]
+lst_new3 = [idx for idx in lst_orig if idx % 3 == 0 and idx > 0 and idx % 4 != 0]
+print("lst_new3 = ", lst_new3)
+print(type(lst_new3))
