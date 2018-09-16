@@ -9,6 +9,8 @@
 # нужно получить список строк: ['AY', 'NOGI', 'P']
 # Решить задачу двумя способами: с помощью re и без.
 
+import re
+
 line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
        'NOGIPHpEMujalpPLNzRWXfwHQqwksrFeipEUlTLeclMwAoktKlfUBJHPsnawvjPhfgewV'\
        'fzKTUfSYtBydXaVIpxWjNKgXANvIoumesCSSvjEGRJosUfuhRRDUuTQwLlJJJDdkVjfSA'\
@@ -25,14 +27,8 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
        'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ'\
        'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
 
-
-def sort_to_max(origin_list):
-    n = 1
-    while n < len(origin_list):
-        for i in range(len(origin_list)-n):
-            if origin_list[i] > origin_list[i + 1]:
-                origin_list[i], origin_list[i + 1] = origin_list[i + 1], origin_list[i]
-        n += 1
-    return origin_list
-
-print(sort_to_max([3, 11, -7, 3, 3.7, -11, 0, 5, -11]))
+pattern2 = re.compile(r'[a-z]{2}([A-Z]+)[A-Z]{2}')
+print(pattern2)
+lst_new5 = pattern2.findall(line_2)
+print(type(lst_new5))
+print(lst_new5)
