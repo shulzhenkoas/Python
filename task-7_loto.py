@@ -48,16 +48,19 @@
 
 import random
 
-loto = [ _ for _ in range(1,91)]
+# Глобальные переменные
+loto = [_ for _ in range(1,91)]
 bag = loto.copy()
+symbol = "-"
+empty_card = [[symbol for _ in range(1, 10)] for _ in range(1,4)]
 
 def create_card():  # Создаем уникальную карточку с цифрами от 1 до 90 в виде вложенного списка
     card = []
-    for el in range(1, 4):
+    for line_card in range(1, 4):
         linex = [loto.pop(random.randint(0, len(loto) - 1)) for _ in range(1, 6)]
         linex.sort()
-        for _ in range(1, 5):
-            linex.insert(random.randint(0, 9), "-")
+        for el_card in range(1, 5):
+            linex.insert(random.randint(0, 9), symbol)
         card.append(linex)
     return card
 
@@ -67,16 +70,21 @@ def out_card(text, lst):    # Вывод карты в красивом виде
         print(" ".join([str(i) for i in el]))
     print("--------------------------\n")
 
-def test_bag(keg, your_card): # Проверяем, что число присутствует в карточке
-    out = "n"
-    for elem_card in your_card:
-        if keg in elem_card:
-            pos = elem_card.index(keg)
-            elem_card.pop(pos)
-            elem_card.insert(pos, "-")
-            out = "y"
+def testing_card(test_card):
+    out = False
+    if test_card == empty_card:
+        out = True
     return out
 
+def test_keg(keg, test_card): # Проверяем, что число присутствует в карточке
+    out = "n"
+    for line_card in test_card:
+        if keg in line_card:
+            pos = line_card.index(keg)
+            line_card.pop(pos)
+            line_card.insert(pos, symbol)
+            out = "y"
+    return out
 
 def main_prog():    # Главное меню
     your_card = create_card()
@@ -89,10 +97,14 @@ def main_prog():    # Главное меню
 
         choice = input("Зачеркнуть цифру? (y/n/Любой другой символ завершит текущую игру):\n").lower()
         if choice == "y" or choice == "n":
-            if test_bag(keg, your_card) != choice:
+            if test_keg(keg, your_card) != choice:
                 print("Ваш выбор неверный!")
                 break
         else:
+            print("До свидания!")
+            break
+        if (testing_card(your_card)):
+            print("Вы выиграли!")
             break
 
 print("== Игра Лото ==")
