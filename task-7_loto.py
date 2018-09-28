@@ -67,22 +67,16 @@ def out_card(text, lst):    # Вывод карты в красивом виде
         print(" ".join([str(i) for i in el]))
     print("--------------------------\n")
 
-def test_bag(num, elem, your_card): # Проверяем, что число присутствует в карточке
-    for el in your_card:
-        if elem in el:
-            idx = el.index(elem)
-            your_card.pop(idx)
-            your_card.insert(idx, "-")
+def test_bag(choice, keg, your_card): # Проверяем, что число присутствует в карточке
+    for elem_card in your_card:
+        if keg in elem_card:
+            pos = elem_card.index(keg)
+            elem_card.pop(pos)
+            elem_card.insert(pos, "-")
             print("Здесь зачеркнули элемент")
         else:
             print("Этой цифры нет")
 
-def user_action(choice, elem, your_card):  # Выбор действия
-    print("action = ", elem)
-    if choice == 1:
-        test_bag(1, elem, your_card)
-    elif choice == 2:
-        test_bag(2, elem, your_card)
 
 def main_prog():    # Главное меню
     your_card = create_card()
@@ -90,19 +84,15 @@ def main_prog():    # Главное меню
     while bag:
         out_card("Ваша карточка", your_card)
 #        out_card("Карточка компьютера", comp_card)
-        elem = bag.pop(random.randint(0, len(bag) - 1))
-        print("Новый бочонок: '{}' (осталось {})\n".format(elem, len(bag)))
+        keg = bag.pop(random.randint(0, len(bag) - 1))
+        print("Новый бочонок: '{}' (осталось {})\n".format(keg, len(bag)))
 
-        choice = int(input("Выберите пункт:\n"
-                           "1. Зачеркнуть\n"
-                           "2. Продолжить\n"
-                           "0. Выход\n"
-                           "---------------------------------------------\n"
-                           "Ваш выбор: "))
-        if choice == 0:
-            break
+        choice = input("Зачеркнуть цифру? Любой другой символ завершит текущую игру. (y/n):\n")
+        if choice.lower() == "y" or choice.lower() == "n":
+            test_bag(choice, keg, your_card)
         else:
-            user_action(choice, elem, your_card)
-    print("Игра окончена")
+            break
 
+print("== Игра Лото ==")
 main_prog()
+print("== Игра окончена ==")
