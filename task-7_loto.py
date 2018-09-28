@@ -51,8 +51,8 @@ import random
 # Глобальные переменные
 loto = [_ for _ in range(1,91)]
 bag = loto.copy()
-symbol = "-"
-empty_card = [[symbol for _ in range(1, 10)] for _ in range(1,4)]
+SYMBOL = "-"
+EMPTY_CARD = [[SYMBOL for _ in range(1, 10)] for _ in range(1,4)]
 
 def create_card():  # Создаем уникальную карточку с цифрами от 1 до 90 в виде вложенного списка
     card = []
@@ -60,19 +60,19 @@ def create_card():  # Создаем уникальную карточку с ц
         linex = [loto.pop(random.randint(0, len(loto) - 1)) for _ in range(1, 6)]
         linex.sort()
         for el_card in range(1, 5):
-            linex.insert(random.randint(0, 9), symbol)
+            linex.insert(random.randint(0, 9), SYMBOL)
         card.append(linex)
     return card
 
 def out_card(text, lst):    # Вывод карты в красивом виде
     print("-={}=-\n--------------------------".format(text))
     for el in lst:
-        print(" ".join([str(i) for i in el]))
+        print(" ".join(["{:>2}".format(str(i)) for i in el]))
     print("--------------------------\n")
 
 def testing_card(test_card):
     out = False
-    if test_card == empty_card:
+    if test_card == EMPTY_CARD:
         out = True
     return out
 
@@ -82,31 +82,36 @@ def test_keg(keg, test_card): # Проверяем, что число прису
         if keg in line_card:
             pos = line_card.index(keg)
             line_card.pop(pos)
-            line_card.insert(pos, symbol)
+            line_card.insert(pos, SYMBOL)
             out = "y"
     return out
 
-def main_prog():    # Главное меню
+def main_prog():    # Главная программа
     your_card = create_card()
     comp_card = create_card()
     while bag:
         out_card("Ваша карточка", your_card)
-#        out_card("Карточка компьютера", comp_card)
+        out_card("Карточка компьютера", comp_card)
+        # Выбор случайного бочонка
         keg = bag.pop(random.randint(0, len(bag) - 1))
         print("Новый бочонок: '{}' (осталось {})\n".format(keg, len(bag)))
-
+        # Логика игры
         choice = input("Зачеркнуть цифру? (y/n/Любой другой символ завершит текущую игру):\n").lower()
         if choice == "y" or choice == "n":
             if test_keg(keg, your_card) != choice:
-                print("Ваш выбор неверный!")
+                print("<<< Ваш выбор неверный! >>>")
                 break
         else:
-            print("До свидания!")
+            print("<<< До свидания! >>>")
             break
+        test_keg(keg, comp_card)
         if (testing_card(your_card)):
-            print("Вы выиграли!")
+            print("<<< Вы выиграли! >>>")
             break
-
-print("== Игра Лото ==")
+        if (testing_card(comp_card)):
+            print("<<< Компьютер выиграл! >>>")
+            break
+# Основная программа
+print("== Игра Лото ==\n")
 main_prog()
 print("== Игра окончена ==")
