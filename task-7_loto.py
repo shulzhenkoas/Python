@@ -62,20 +62,20 @@ def create_card():  # Создаем уникальную карточку с ц
     return card
 
 def out_card(text, lst):    # Вывод карты в красивом виде
-    print("{}\n--------------------------".format(text))
+    print("-={}=-\n--------------------------".format(text))
     for el in lst:
         print(" ".join([str(i) for i in el]))
     print("--------------------------\n")
 
-def test_bag(choice, keg, your_card): # Проверяем, что число присутствует в карточке
+def test_bag(keg, your_card): # Проверяем, что число присутствует в карточке
+    out = "n"
     for elem_card in your_card:
         if keg in elem_card:
             pos = elem_card.index(keg)
             elem_card.pop(pos)
             elem_card.insert(pos, "-")
-            print("Здесь зачеркнули элемент")
-        else:
-            print("Этой цифры нет")
+            out = "y"
+    return out
 
 
 def main_prog():    # Главное меню
@@ -87,9 +87,11 @@ def main_prog():    # Главное меню
         keg = bag.pop(random.randint(0, len(bag) - 1))
         print("Новый бочонок: '{}' (осталось {})\n".format(keg, len(bag)))
 
-        choice = input("Зачеркнуть цифру? Любой другой символ завершит текущую игру. (y/n):\n")
-        if choice.lower() == "y" or choice.lower() == "n":
-            test_bag(choice, keg, your_card)
+        choice = input("Зачеркнуть цифру? (y/n/Любой другой символ завершит текущую игру):\n").lower()
+        if choice == "y" or choice == "n":
+            if test_bag(keg, your_card) != choice:
+                print("Ваш выбор неверный!")
+                break
         else:
             break
 
